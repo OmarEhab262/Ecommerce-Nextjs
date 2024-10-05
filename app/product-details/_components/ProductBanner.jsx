@@ -8,15 +8,17 @@ const ProductBanner = ({ product }) => {
   return (
     <div>
       {bannerUrl ? (
-        <Image
-          src={bannerUrl}
-          alt="Banner"
-          width={500}
-          height={350}
-          className="rounded-lg"
-        />
+        <>
+          <Image
+            src={bannerUrl}
+            alt="Banner"
+            width={500}
+            height={350}
+            className="rounded-lg"
+          />
+        </>
       ) : (
-        <p>No banner available</p>
+        <div className="w-[500px] h-[281px] bg-slate-200 rounded-lg animate-pulse"></div>
       )}
     </div>
   );

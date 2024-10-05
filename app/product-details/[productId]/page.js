@@ -56,9 +56,11 @@ const ProductDetails = ({ params }) => {
   return (
     <div className="px-10 md:px-20 py-5 ">
       <BreadCrumbs path={path} />
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 my-5 justify-items-center items-center">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 my-5 lg:justify-items-center items-center">
         <ProductBanner product={productDetails} />
-        <ProductInfo product={productDetails} />
+        <div className="justify-self-start">
+          <ProductInfo product={productDetails} />
+        </div>
       </div>
       <div className="mt-10">
         <h2 className="my-5 font-bold text-xl ">Similar Products</h2>
