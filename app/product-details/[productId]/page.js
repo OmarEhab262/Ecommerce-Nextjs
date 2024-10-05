@@ -6,11 +6,13 @@ import BreadCrumbs from "../../_components/BreadCrumbs";
 import ProductBanner from "../_components/ProductBanner";
 import ProductInfo from "../_components/ProductInfo";
 import ProductList from "../../_components/ProductList";
+import { usePathname } from "next/navigation";
 
 const ProductDetails = ({ params }) => {
   const [productDetails, setProductDetails] = useState({});
   const [productList, setProductList] = useState([]);
-
+  const path = usePathname();
+  console.log("path: ", path);
   // Function to fetch similar products excluding the current product
   const getProductListByCategory = (product) => {
     if (product?.attributes?.category && product?.id) {
@@ -53,7 +55,7 @@ const ProductDetails = ({ params }) => {
 
   return (
     <div className="px-10 md:px-20 py-5 ">
-      <BreadCrumbs />
+      <BreadCrumbs path={path} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 my-5 justify-items-center items-center">
         <ProductBanner product={productDetails} />
         <ProductInfo product={productDetails} />
