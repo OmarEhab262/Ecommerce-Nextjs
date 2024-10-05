@@ -9,7 +9,7 @@ const ProductSection = () => {
   console.log("productList: ", productList);
   const getLatestProducts_ = () => {
     ProductApis.getLatestProducts().then((res) => {
-      setProductList(res.data.data);
+      setProductList(res?.data?.data);
     });
   };
 
@@ -19,7 +19,9 @@ const ProductSection = () => {
   return (
     <>
       <div className="px-10 md:px-20">
-        <h2>Our Latest Products </h2>
+        <h2 className="my-4 font-bold text-xl">
+          <span className="text-primary text-2xl">O</span>ur Latest Products{" "}
+        </h2>
         <ProductList productList={productList} />
       </div>
     </>
