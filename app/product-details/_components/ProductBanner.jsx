@@ -3,7 +3,6 @@ import React from "react";
 
 const ProductBanner = ({ product }) => {
   const bannerUrl = product?.attributes?.banner?.data?.attributes?.url;
-  console.log("product banner URL: ", bannerUrl);
 
   return (
     <div>

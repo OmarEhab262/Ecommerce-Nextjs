@@ -12,7 +12,6 @@ const ProductDetails = ({ params }) => {
   const [productDetails, setProductDetails] = useState({});
   const [productList, setProductList] = useState([]);
   const path = usePathname();
-  console.log("path: ", path);
   // Function to fetch similar products excluding the current product
   const getProductListByCategory = (product) => {
     if (product?.attributes?.category && product?.id) {
@@ -21,7 +20,7 @@ const ProductDetails = ({ params }) => {
         product?.id
       )
         .then((res) => {
-          console.log("Product list", res?.data?.data);
+          //   console.log("Product list", res?.data?.data);
           setProductList(res?.data?.data);
         })
         .catch((error) => {
