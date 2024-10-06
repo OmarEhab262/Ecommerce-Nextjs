@@ -1,6 +1,7 @@
 "use client";
 import { useContext } from "react";
 import CartContext from "../_context/CartContext";
+import Link from "next/link";
 
 const Cart = ({ openCart, setOpenCart }) => {
   const [cart] = useContext(CartContext); // No need to setCart here; we're only reading from context
@@ -72,12 +73,13 @@ const Cart = ({ openCart, setOpenCart }) => {
             </ul>
 
             <div className="space-y-4 text-center">
-              <a
-                href="#"
+              <Link
+                href="/cart"
+                onClick={() => setOpenCart(false)}
                 className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
               >
                 View my cart ({cart.length})
-              </a>
+              </Link>
               <a
                 href="#"
                 className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"

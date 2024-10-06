@@ -13,4 +13,8 @@ const getUserCart = (email) => {
   );
 };
 
-export default { addToCart, getUserCart };
+const deleteCartItem = (id) => {
+  return axiosClient.delete(`/carts/${id}`);
+};
+
+export default { addToCart, getUserCart, deleteCartItem };
