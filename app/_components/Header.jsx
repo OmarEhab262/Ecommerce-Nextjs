@@ -6,6 +6,7 @@ import Image from "next/image";
 import CartContext from "../_context/CartContext";
 import CartApis from "../_utils/CartApis";
 import Cart from "./Cart";
+import Link from "next/link";
 
 function Header() {
   const { user } = useUser();
@@ -13,6 +14,7 @@ function Header() {
   const [cart, setCart] = useContext(CartContext);
   const [showList, setShowList] = useState(false); // State to manage the list visibility
   const [openCart, setOpenCart] = useState(false);
+
   const getCartItems = () => {
     CartApis.getUserCart(user.primaryEmailAddress.emailAddress).then((res) => {
       console.log("response from cart items", res?.data?.data);
@@ -21,13 +23,18 @@ function Header() {
   };
 
   useEffect(() => {
-    user && getCartItems();
+    if (user) {
+      getCartItems();
+    }
   }, [user]);
 
   useEffect(() => {
-    const path = window.location.pathname;
-    setHideHeader(path === "/sign-in" || path === "/sign-up");
-  }, [window.location.pathname]);
+    // Check if window is defined (client-side)
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      setHideHeader(path === "/sign-in" || path === "/sign-up");
+    }
+  }, [typeof window !== "undefined" ? window.location.pathname : ""]);
 
   if (hideHeader) {
     return null;
@@ -40,7 +47,7 @@ function Header() {
   return (
     <header className="bg-white shadow-md">
       <div className="mt-1 mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <a className="block text-teal-600" href="#">
+        <Link className="block text-teal-600" href="/">
           <span className="sr-only">Home</span>
           <Image
             src="/logo.svg"
@@ -49,18 +56,18 @@ function Header() {
             height={32}
             className="h-8 w-auto"
           />
-        </a>
+        </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-sm">
               <li>
-                <a
+                <Link
                   className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
+                  href="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <a

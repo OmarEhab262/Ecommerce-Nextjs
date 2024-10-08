@@ -2,6 +2,8 @@
 import React, { useContext } from "react";
 import CartContext from "../_context/CartContext";
 import CartApis from "../_utils/CartApis";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const [cart, setCart] = useContext(CartContext);
@@ -26,6 +28,7 @@ const Cart = () => {
       setCart(cart.filter((item) => item.id !== itemId));
     });
   };
+  const router = useRouter();
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -110,12 +113,14 @@ const Cart = () => {
                   <h2 className="text-[15px] text-left font-bold text-gray-900 ">
                     Note: All Items will be sent to your email address.
                   </h2>
-                  <a
-                    href="#"
+                  <button
+                    onClick={() =>
+                      router.push("/checkout?amount=" + getTotalAmount())
+                    }
                     className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                   >
                     Checkout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
